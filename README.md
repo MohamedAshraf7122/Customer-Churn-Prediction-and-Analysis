@@ -1,7 +1,10 @@
-write in vs code terminal to push it github
+This project predicts whether a customer is likely to churn using machine learning.
+It includes data preprocessing, exploratory analysis(EDA), and model building with evaluation metrics.
 
-git add .
+Tech Used
 
-git commit -m "your note"
+-Python, Pandas, NumPy
 
-git push
+-Scikit-learn
+
+-Matplotlib, Seaborn,Plotly
