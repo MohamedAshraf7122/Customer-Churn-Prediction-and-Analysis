@@ -2,7 +2,7 @@
 
 This project is a key requirement for the **Digital Egypt Pioneers Initiative (DEPI)**, managed by the Egyptian Ministry of Communications and Information Technology in partnership with IBM. Our team, Team 80, is undertaking the "Customer Churn Prediction and Analysis" project to build a machine learning model that predicts which customers are likely to stop using a service.
 
-The primary goal is to leverage data science techniques to identify customers at risk of leaving, enabling the company to implement proactive retention strategies. 💡
+The primary goal is to leverage data science techniques to identify customers at risk of leaving, enabling the company to implement proactive retention strategies.
 
 ## 👥 Team Members
 * Youssef Mohamed Soliman
