@@ -2,7 +2,7 @@
 
 This project is a key requirement for the **Digital Egypt Pioneers Initiative (DEPI)**, managed by the Egyptian Ministry of Communications and Information Technology in partnership with IBM. Our team, Team 80, is undertaking the "Customer Churn Prediction and Analysis" project to build a machine learning model that predicts which customers are likely to stop using a service.
 
-The primary goal is to leverage data science techniques to identify customers at risk of leaving, enabling the company to implement proactive retention strategies.
+The primary goal is to leverage data science techniques to identify customers at risk of leaving, enabling the company to implement proactive retention strategies. 💡
 
 ## 👥 Team Members
 * Youssef Mohamed Soliman
@@ -44,7 +44,7 @@ The project utilizes an E-commerce dataset provided in an Excel file (`E Commerc
 
 ## 🚀 Project Milestones & Progress
 
-The project is divided into five milestones. Currently, **Milestones 1 and 2 are complete**.
+The project is divided into five milestones. Currently, **Milestones 1, 2, and 3 are complete**.
 
 ### ✔️ Milestone 1: Data Collection, Exploration, and Preprocessing
 **Objective:** To collect, explore, and preprocess the customer churn data to prepare it for analysis and model building.
@@ -75,10 +75,31 @@ The project is divided into five milestones. Currently, **Milestones 1 and 2 are
     * **Transformation:** To handle skewness, a **log transformation** was applied to numerical features like `WarehouseToHome`, `CouponUsed`, and `CashbackAmount`.
     * **Scaling:** All numerical features were scaled using `StandardScaler` to ensure they have a mean of 0 and a standard deviation of 1. This is crucial for models sensitive to the scale of input features.
 3.  **Feature Selection 🎯:**
-    * **Recursive Feature Elimination (RFE)** was used with a Logistic Regression model to rank the features based on their importance for predicting churn. The analysis identified **`Tenure`** as the most influential feature, followed by **`Complain`** and **`NumberOfAddress`**.
+    * **Recursive Feature Elimination (RFE)** was used with both Logistic Regression and Random Forest models to rank features based on their importance for predicting churn. `Tenure`, `Complain`, `NumberOfAddress`, `CashbackAmount`, and `WarehouseToHome` consistently ranked high.
 4.  **Advanced Visualization 📈:**
     * A heatmap was created to visualize the relationship between categorical variables like `Complain` and `Churn`.
     * Generated line plots to analyze the churn rate across different satisfaction scores for each product category.
+    * Additional visualizations explored relationships between `Churn`, `Tenure`, `Complain`, `SatisfactionScore`, `NumberOfAddress`, and `DaySinceLastOrder`.
+
+### ✔️ Milestone 3: Machine Learning Model Development and Optimization
+**Objective:** To build, train, and optimize machine learning models to predict churn.
+
+1.  **Data Splitting:** The dataset was split into training (80%) and testing (20%) sets, using stratification to maintain the original churn proportion in both sets.
+2.  **Model Selection & Pipeline:** Three classification models were chosen:
+    * Logistic Regression (with balanced class weights)
+    * Random Forest Classifier (with balanced class weights and 200 estimators)
+    * XGBoost Classifier
+    * A `Pipeline` was created for each model, combining `StandardScaler` for preprocessing with the classifier.
+3.  **Model Training & Cross-Validation:** Models were trained on the training data. A 5-fold `StratifiedKFold` cross-validation strategy was used to evaluate the generalization performance of each model based on the ROC-AUC metric.
+4.  **Model Evaluation:** Models were evaluated on the held-out test set using:
+    * **ROC-AUC Score:** To measure the model's ability to distinguish between churned and non-churned customers.
+    * **Classification Report:** Providing precision, recall, and F1-score for both classes.
+    * **Confusion Matrix:** To visualize the true positives, false positives, true negatives, and false negatives.
+5.  **Model Comparison:**
+    * **Logistic Regression:** Showed reasonable performance (Mean CV ROC-AUC: ~0.88, Test ROC-AUC: ~0.87), providing a good baseline.
+    * **Random Forest:** Demonstrated excellent performance (Mean CV ROC-AUC: ~0.97, Test ROC-AUC: ~0.997).
+    * **XGBoost:** Also achieved excellent performance (Mean CV ROC-AUC: ~0.97, Test ROC-AUC: ~0.997).
+    * **Conclusion:** Based on the test set ROC-AUC and the detailed classification report (showing strong precision, recall, and F1-scores, particularly for the churn class), the **XGBoost Classifier** was selected as the best-performing model for this task.
 
 ---
 
@@ -89,7 +110,8 @@ The project is divided into five milestones. Currently, **Milestones 1 and 2 are
 * **Matplotlib & Seaborn:** For static data visualizations.
 * **Plotly:** For interactive data visualizations.
 * **SciPy:** For statistical analysis (t-tests, chi-squared tests, ANOVA).
-* **Scikit-learn:** For feature engineering (LabelEncoder, StandardScaler) and feature selection (RFE).
+* **Scikit-learn:** For feature engineering (`LabelEncoder`, `StandardScaler`), feature selection (`RFE`), modeling (`LogisticRegression`, `RandomForestClassifier`), model evaluation (`train_test_split`, `cross_val_score`, `StratifiedKFold`, `classification_report`, `confusion_matrix`, `roc_auc_score`), and pipelines (`Pipeline`).
+* **XGBoost:** For the gradient boosting classification model (`XGBClassifier`).
 * **YData-Profiling:** For generating initial detailed EDA reports.
 
 ---
@@ -97,6 +119,5 @@ The project is divided into five milestones. Currently, **Milestones 1 and 2 are
 ## ➡️ Next Steps
 The project will now proceed to the subsequent milestones as outlined in the project plan.
 
-* **Milestone 3: Machine Learning Model Development and Optimization** 🤖: Build, train, and optimize various classification models (e.g., Logistic Regression, Random Forest, Gradient Boosting) to predict churn.
-* **Milestone 4: MLOps, Deployment, and Monitoring** ☁️: Implement MLOps practices, deploy the best-performing model as an API, and set up a monitoring system.
+* **Milestone 4: MLOps, Deployment, and Monitoring** ☁️: Implement MLOps practices, deploy the best-performing model (XGBoost) as an API, and set up a monitoring system.
 * **Milestone 5: Final Documentation and Presentation** 🎤: Compile a comprehensive final report and present the project's findings and business impact to stakeholders.
